@@ -17,7 +17,8 @@ module.exports = React.createClass({
   getInitialState: function(){
     return {
       username: '',
-      password: ''
+      password: '',
+      simulateLogin: true
     };
   },
 
@@ -55,13 +56,18 @@ module.exports = React.createClass({
   },
 
   onPress: function() {
-  requesthandler.post({ url: 'http://login-url', data: { Username: this.state.username, Password: this.state.password } })
+    if(!this.state.simulateLogin){
+      requesthandler.post({ url: 'http://login-url', data: { Username: this.state.username, Password: this.state.password } })
   .then((responseData) => {
     asynchelper.setDataToStore('cookie', JSON.stringify(responseData.headers.map["set-cookie"]));
     console.log("success");
     this.props.navigator.push({ name: 'landing' });
-    })
-  .done();
+    });
+    }
+    else {
+       this.props.navigator.push({ name: 'landing' });
+    }
+  
   }
 
 });

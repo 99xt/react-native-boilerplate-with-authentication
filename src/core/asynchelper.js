@@ -6,16 +6,16 @@ import {
 class asynchelper {
 
   static setDataToStore(key, value){
-	AsyncStorage.setItem(key, value);
+	  AsyncStorage.setItem(key, value);
   }
 
   static getDataFromStore(key) {
   	return AsyncStorage.getItem(key);
   }
 
-  /*static clearDataFromStore(key){
+  static clearDataFromStore(key){
   	AsyncStorage.removeItem(key);
-  }*/
+  }
 
 }
 
