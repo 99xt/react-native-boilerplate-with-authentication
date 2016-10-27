@@ -10,6 +10,7 @@ import {
 
 import asynchelper from '../core/asynchelper'
 import requesthandler from '../core/requesthandler'
+import Testcomponent from '../components/shared/testcomponent';
 
 module.exports = React.createClass({
 
@@ -33,10 +34,10 @@ module.exports = React.createClass({
          <TouchableHighlight
             style={styles.button}
             underlayColor={'#328FE6'}
-            onPress={this.sendCookie}
-            >
+            onPress={this.sendCookie}>
             <Text style={styles.label}>SEND</Text>
          </TouchableHighlight>
+         <Testcomponent message="this is a message from a prop" />
       </View>
     );
   },

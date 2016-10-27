@@ -21,7 +21,7 @@ class requesthandler {
   }
 
   static get(additionalHeaders, url) {
-  	 var headersToSend = getHeaders();
+  	 var headersToSend = this.getHeaders();
   	 for (var i = additionalHeaders.length - 1; i >= 0; i--) {
   	 	headersToSend.append(additionalHeaders[i].key, additionalHeaders[i].value);
   	 }
