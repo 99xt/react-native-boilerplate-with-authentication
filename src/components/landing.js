@@ -43,7 +43,7 @@ module.exports = React.createClass({
   },
 
   sendCookie: function(){
-	requesthandler.get({ "cookie": this.state.test }, 'https://dev.bus.no/BUSNewPL/ProductSuite/BUSadmin/Unit/GetDocumentsForUnit')
+	requesthandler.get({ "cookie": this.state.test }, 'https://jsonplaceholder.typicode.com/posts')
   	.then((responseData) => {
     	console.log(responseData);
     });
