@@ -3,7 +3,7 @@ import {
   AsyncStorage
 } from 'react-native';
 
-class asynchelper {
+export default class asynchelper {
 
   static setDataToStore(key, value){
 	  AsyncStorage.setItem(key, value);
@@ -18,5 +18,3 @@ class asynchelper {
   }
 
 }
-
-module.exports = asynchelper;
