@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import {
@@ -12,19 +11,19 @@ import {
 import asynchelper from '../core/asynchelper'
 import requesthandler from '../core/requesthandler'
 
-module.exports = React.createClass({
+export default class Login {
 
-  getInitialState: function(){
-    return {
+  constructor() {
+    this.state = {
       username: '',
       password: '',
       simulateLogin: true
     };
-  },
+  }
 
-  render: function() {
+  render() {
     return (
-       <View style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.loginContainer}>
           <TextInput
             style={styles.input}
@@ -33,8 +32,8 @@ module.exports = React.createClass({
             placeholder={'Enter Username'}
             maxLength={12}
             multiline={false}
-            />
-            <TextInput
+          />
+          <TextInput
             style={styles.input}
             value={this.state.password}
             onChangeText={(text) => this.setState({password: text})}
@@ -42,36 +41,38 @@ module.exports = React.createClass({
             placeholder={'Enter Password'}
             maxLength={12}
             multiline={false}
-            />
+          />
           <TouchableHighlight
             style={styles.button}
             underlayColor={'#328FE6'}
             onPress={this.onPress}
-            >
+          >
             <Text style={styles.label}>LOGIN</Text>
           </TouchableHighlight>
         </View>
       </View>
     );
-  },
-
-  onPress: function() {
-    if(!this.state.simulateLogin){
-      requesthandler.post({ url: 'http://login-url', data: { Username: this.state.username, Password: this.state.password } })
-  .then((responseData) => {
-    asynchelper.setDataToStore('cookie', JSON.stringify(responseData.headers.map["set-cookie"]));
-    console.log("success");
-    this.props.navigator.push({ name: 'landing' });
-    });
-    }
-    else {
-       this.props.navigator.push({ name: 'landing' });
-    }
-  
   }
 
-});
- 
+  onPress() {
+    if (!this.state.simulateLogin) {
+      requesthandler.post({
+        url: 'http://login-url',
+        data: {Username: this.state.username, Password: this.state.password}
+      }).then((responseData) => {
+        asynchelper.setDataToStore('cookie', JSON.stringify(responseData.headers.map["set-cookie"]));
+        console.log("success");
+        this.props.navigator.push({name: 'landing'});
+      });
+    }
+    else {
+      this.props.navigator.push({name: 'landing'});
+    }
+
+  }
+
+}
+
 var styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -79,7 +80,7 @@ var styles = StyleSheet.create({
     alignItems: 'stretch',
     backgroundColor: '#6E5BAA'
   },
-   loginContainer: {
+  loginContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -114,5 +115,4 @@ var styles = StyleSheet.create({
     fontWeight: '600',
     color: '#ffffff'
   }
-
 });

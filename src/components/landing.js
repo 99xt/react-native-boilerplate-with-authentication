@@ -12,44 +12,42 @@ import asynchelper from '../core/asynchelper'
 import requesthandler from '../core/requesthandler'
 import Testcomponent from '../components/shared/testcomponent';
 
-module.exports = React.createClass({
+export default class Landing {
+  constructor() {
+    this.state = {
+      test: ''
+    };
+  }
 
-	  getInitialState: function(){
-    	return {
-      		test: ''
-    	};
-  	},
-
-	componentDidMount: function() {
-      asynchelper.getDataFromStore('cookie').then((result) =>{
-        this.state.test = result;
-        console.log(this.state.test);
-      });
-    },	
-
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={{color: '#fff'}}>Landing Page !!!</Text>
-         <TouchableHighlight
-            style={styles.button}
-            underlayColor={'#328FE6'}
-            onPress={this.sendCookie}>
-            <Text style={styles.label}>SEND</Text>
-         </TouchableHighlight>
-         <Testcomponent message="this is a message from a prop" />
-      </View>
-    );
-  },
-
-  sendCookie: function(){
-	requesthandler.get({ "cookie": this.state.test }, 'https://jsonplaceholder.typicode.com/posts')
-  	.then((responseData) => {
-    	console.log(responseData);
+  componentDidMount() {
+    asynchelper.getDataFromStore('cookie').then((result) => {
+      this.state.test = result;
+      console.log(this.state.test);
     });
   }
 
-});
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={{color: '#fff'}}>Landing Page !!!</Text>
+        <TouchableHighlight
+          style={styles.button}
+          underlayColor={'#328FE6'}
+          onPress={this.sendCookie}>
+          <Text style={styles.label}>SEND</Text>
+        </TouchableHighlight>
+        <Testcomponent message="this is a message from a prop"/>
+      </View>
+    );
+  }
+
+  sendCookie() {
+    requesthandler.get({"cookie": this.state.test}, 'https://jsonplaceholder.typicode.com/posts')
+      .then((responseData) => {
+        console.log(responseData);
+      });
+  }
+}
 
 var styles = StyleSheet.create({
   container: {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import {
   View,
@@ -7,29 +7,27 @@ import {
   StyleSheet
 } from 'react-native';
 
-class Testcomponent extends Component{
-    render(){
-        return(
-            <View style={styles.container}>
-                <Text style={styles.attitude}>
-                    { this.props.message }
-                </Text>
-            </View>
-        )
-    }
+export default class Testcomponent extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.attitude}>
+          { this.props.message }
+        </Text>
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    attitude: {
-        fontStyle: 'italic',
-        fontFamily: 'georgia',
-        fontSize: 26
-    }
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  attitude: {
+    fontStyle: 'italic',
+    fontFamily: 'georgia',
+    fontSize: 26
+  }
 });
-
-module.exports = Testcomponent;
